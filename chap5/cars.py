@@ -5,3 +5,12 @@ for car in cars:
     else:
         print(car.title())
 
+car = 'bmw'
+if car == 'bmw':
+    print(f"\nYour car is a BMW!")
+
+car = "Audi"
+if car.lower() == "audi":
+    print("Your car is an Audi")
+else:
+    print("Your car is not an Audi")
