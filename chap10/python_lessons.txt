@@ -1,0 +1,11 @@
+
+The Chapters in Python Crash Course are:
+Python - variables and simple data structures
+Python - lists
+Python - if statements
+Python - dictionaries
+Python - user inputs and while loops
+Python - functions
+Python - classes
+Python - files and exceptions, and
+Python - testing your code
