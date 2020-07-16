@@ -27,16 +27,18 @@ class Restaurant:
 
 class IceCreamStand(Restaurant):
 
-    def __init__(self, name, cuisine, *flavours):
+    def __init__(self, name, cuisine="dessert"):
         """Initialize name and type attributes."""
         super().__init__(name, cuisine)
-        self.flavours = flavours
+        self.flavours = []
+
+    def show_flavours(self):
+        print(f"Here are the flavours available:")
+        for flavour in self.flavours:
+            print(f"- {flavour.title()}")
 
 
-    def flavours(self):
-        print(f"Here are the flavours available:\n"
-              f"{self.flavours}")
-
-shop_1 = IceCreamStand("Ice cream shop", "desserts", "vanilla", "strawberry", "lime")
+shop_1 = IceCreamStand("Ice cream shop")
+shop_1.flavours = ['vanilla', 'strawberry', 'bubblegum']
 shop_1.describe_restaurant()
-shop_1.flavours()
+shop_1.show_flavours()
