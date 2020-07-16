@@ -1,16 +1,11 @@
 users = ["John", "Angie", "Susan", "Cliff"]
-for user in users:
-    if user in users:
-        print(f"Welcome {user}!")
+print(users)
 
-users.remove("John")
-users.remove("Angie")
-users.remove("Susan")
-users.remove("Cliff")
-
-for user in users:
-    if user in users:
+while len(users) > 0:
+    for user in users:
         print(f"Welcome {user}!")
-    else:
-        print("We need to find some users!")
-    continue
+        users.remove(user)
+else:
+    print("\nWe have now removed all users")
+    print(f"We need to find some users!")
+
