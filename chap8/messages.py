@@ -1,6 +1,5 @@
-def send_messages():
-    for message in short_messages:
+def send_messages(messages, sent_messages):
+    for message in messages:
         sent_messages.append(message[:])
-        print(message)
 
 
