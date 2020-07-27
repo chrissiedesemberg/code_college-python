@@ -24,15 +24,7 @@ class KeyDown:
                 if event.type == pygame.QUIT:
                     sys.exit()
                 elif event.type == pygame.KEYDOWN:
-                    print(
-                    f"\nYou have pressed the following button: '{pygame.key.name(event.key)}'")
-                elif event.type == pygame.KEYUP:
-                    print("Go ahead and press another button")
-
-
-
-
-
+                    print(f"You have pressed: {pygame.key.name(event.key)}")
 
 if __name__ == '__main__':
     # Make a game instance, and run the game.

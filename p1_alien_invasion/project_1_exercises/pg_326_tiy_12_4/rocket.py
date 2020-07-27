@@ -38,6 +38,15 @@ class Rocket:
         # Update rect object from self.x.
         self.rect.x = self.x
 
+        # Update the rocket's y value, not the rect.
+        if self.moving_up and self.rect.top > 0:
+            self.y -= self.settings.rocket_speed
+        if self.moving_down and self.rect.bottom < self.screen_rect.bottom:
+            self.y += self.settings.rocket_speed
+
+        # Update rect object from self.y.
+        self.rect.y = self.y
+
     def blitme(self):
         """Draw rocket at current location"""
         self.screen.blit(self.image, self.rect)
