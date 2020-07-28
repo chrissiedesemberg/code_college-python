@@ -55,3 +55,36 @@ class Settings:
 
         self.alien_points = int(self.alien_points * self.score_scale)
         print(self.alien_points)
+
+    def settings_easy(self):
+        self.ship_speed = 1
+        self.bullet_speed = 2
+        self.alien_speed = 1
+
+        # fleet_direction of 1 represents right; -1 represents left.
+        self.fleet_direction = 1
+
+        # Scoring
+        self.alien_points = 25
+
+    def settings_medium(self):
+        self.ship_speed = 2
+        self.bullet_speed = 4
+        self.alien_speed = 3
+
+        # fleet_direction of 1 represents right; -1 represents left.
+        self.fleet_direction = 1
+
+        # Scoring
+        self.alien_points = 50
+
+    def settings_hard(self):
+        self.ship_speed = 3
+        self.bullet_speed = 4.0
+        self.alien_speed = 4
+
+        # fleet_direction of 1 represents right; -1 represents left.
+        self.fleet_direction = 1
+
+        # Scoring
+        self.alien_points = 100

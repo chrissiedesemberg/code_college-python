@@ -1,6 +1,7 @@
+import json
 import pygame.font
 from pygame.sprite import Group
-from p1_alien_invasion.alien_game_practice.ship import Ship
+from p1_alien_invasion.alien_game_FINAL.ship import Ship
 
 
 class Scoreboard:
@@ -22,6 +23,7 @@ class Scoreboard:
         self.prep_high_score()
         self.prep_level()
         self.prep_ships()
+        self.check_if_high_score()
 
     def prep_score(self):
         """Turn the score into a rendered image."""
@@ -65,6 +67,23 @@ class Scoreboard:
             self.prep_high_score()
             self.prep_level()
             self.prep_ships()
+            self.write_high_score()
+
+    def check_if_high_score(self):
+        filename = 'high_score.json'
+        try:
+            with open(filename) as f:
+                self.stats.high_score = json.load(f)
+                self.prep_high_score()
+        except FileNotFoundError:
+            pass
+        else:
+            print("Brand new game - no new high_score")
+
+    def write_high_score(self):
+        filename = 'high_score.json'
+        with open(filename, 'w') as f:
+            json.dump(self.stats.score, f)
 
     def prep_level(self):
         """Turn the level into a rendered image."""

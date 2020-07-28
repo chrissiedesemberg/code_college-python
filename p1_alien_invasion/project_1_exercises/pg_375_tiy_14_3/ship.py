@@ -3,11 +3,11 @@ import pygame
 class Ship:
     """A class to manage the ship."""
  
-    def __init__(self, ss):
+    def __init__(self, s):
         """Initialize the ship and set its starting position."""
-        self.screen = ss.screen
+        self.screen = s.screen
         self.screen_rect = self.screen.get_rect()
-        self.settings = ss.settings
+        self.settings = s.settings
 
 
         # Load the ship image and get its rect.

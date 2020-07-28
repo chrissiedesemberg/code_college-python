@@ -3,11 +3,13 @@ import pygame
 from random import randint
 from time import sleep
 
-from p1_alien_invasion.project_1_exercises.pg_364_tiy_13_6.settings import Settings
-from p1_alien_invasion.project_1_exercises.pg_364_tiy_13_6.ship import Ship
-from p1_alien_invasion.project_1_exercises.pg_364_tiy_13_6.bullet import Bullet
-from p1_alien_invasion.project_1_exercises.pg_364_tiy_13_6.alien import Alien
-from p1_alien_invasion.project_1_exercises.pg_364_tiy_13_6.game_stats import GameStats
+from p1_alien_invasion.project_1_exercises.pg_372_tiy_14_1.settings import Settings
+from p1_alien_invasion.project_1_exercises.pg_372_tiy_14_1.ship import Ship
+from p1_alien_invasion.project_1_exercises.pg_372_tiy_14_1.bullet import Bullet
+from p1_alien_invasion.project_1_exercises.pg_372_tiy_14_1.alien import Alien
+from p1_alien_invasion.project_1_exercises.pg_372_tiy_14_1.game_stats import GameStats
+from p1_alien_invasion.project_1_exercises.pg_372_tiy_14_1.button import Button
+
 
 class SidewayShooter:
     """Overall class to manage game assets and behavior."""
@@ -30,6 +32,9 @@ class SidewayShooter:
         self.aliens = pygame.sprite.Group()
 
         self._create_fleet()
+
+        # Make the Play button.
+        self.play_button = Button(self, "Click or press 'p' to start!")
 
     def _create_alien(self, alien_number, number_rows):
         """Create an alien and place it in the row."""
@@ -163,6 +168,9 @@ class SidewayShooter:
                 self._check_keydown_events(event)
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                self._check_play_button(mouse_pos)
 
     def _check_keydown_events(self, event):
         """Respond to keypresses."""
@@ -172,6 +180,8 @@ class SidewayShooter:
             self.ship.moving_down = True
         elif event.key == pygame.K_SPACE:
             self._fire_bullet()
+        elif event.key == pygame.K_p:
+            self.stats.game_active = True
         elif event.key == pygame.K_q or pygame.K_ESCAPE:
             sys.exit()
 
@@ -181,6 +191,10 @@ class SidewayShooter:
             self.ship.moving_up = False
         elif event.key == pygame.K_DOWN:
             self.ship.moving_down = False
+
+    def _check_play_button(self, mouse_pos):
+        if self.play_button.rect.collidepoint(mouse_pos):
+            self.stats.game_active = True
 
     def _fire_bullet(self):
         """Create a new bullet and add it to the bullets group."""
@@ -195,6 +209,10 @@ class SidewayShooter:
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
         self.aliens.draw(self.screen)
+
+        # Draw the play button if the game is inactive.
+        if not self.stats.game_active:
+            self.play_button.draw_button()
 
         pygame.display.flip()
 
