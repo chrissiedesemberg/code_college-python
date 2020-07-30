@@ -138,11 +138,6 @@ class AlienInvasion:
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
 
-    def losing_points(self):
-        if self.stats.score <= -1:
-                self._ship_hit()
-
-
     def _update_bullets(self):
         """Update position of bullets and get rid of old bullets."""
         # Update bullet positions.
@@ -150,13 +145,13 @@ class AlienInvasion:
         # Get rid of bullets that have disappeared.
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
+                self.stats.score -= self.settings.bullets_wasted_points
+                if self.stats.score < 0:
+                    self.stats.score = 0
                 self.bullets.remove(bullet)
-                self.stats.score -= self.settings.alien_points
             self.sb.prep_score()
             self.sb.check_high_score()
-
         self._check_bullet_alien_collisions()
-        self.losing_points()
 
     def _check_bullet_alien_collisions(self):
         """Respond to bullet-alien collisions."""
@@ -225,6 +220,8 @@ class AlienInvasion:
 
             # Pause.
             sleep(0.5)
+
+        # elif self.stats.ships_left <= 0 and self._ship_hit():
         else:
             self.stats.game_active = False
             pygame.mouse.set_visible(True)
