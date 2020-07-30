@@ -86,6 +86,10 @@ class AlienInvasion:
                 # Set the game settings to hard.
                 self.settings.settings_hard()
 
+        self.reset_game_and_start()
+
+    def reset_game_and_start(self):
+
             # Reset the game statistics.
             self.stats.reset_stats()
             self.sb.prep_score()
@@ -156,6 +160,10 @@ class AlienInvasion:
                 self.stats.score += self.settings.alien_points * len(aliens)
             self.sb.prep_score()
             self.sb.check_high_score()
+
+        self.start_new_level()
+
+    def start_new_level(self):
 
         if not self.aliens:
             # Destroy existing bullets and create new fleet.

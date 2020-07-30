@@ -1,20 +1,20 @@
 import json
 import pygame.font
 from pygame.sprite import Group
-from p1_alien_invasion.alien_game_FINAL.ship import Ship
+from p1_alien_invasion.project_1_exercises.pg_393_tiy_14_8.sb_ship import ScoreboardShip
 
 
 class Scoreboard:
     """A class to report scoring information."""
 
-    def __init__(self, ai_game):
+    def __init__(self, ss):
         """Initialize scorekeeping attributes."""
 
-        self.ai_game = ai_game
-        self.screen = ai_game.screen
+        self.ai_game = ss
+        self.screen = ss.screen
         self.screen_rect = self.screen.get_rect()
-        self.settings = ai_game.settings
-        self.stats = ai_game.stats
+        self.settings = ss.settings
+        self.stats = ss.stats
         # Font settings for scoring information.
         self.text_color = (30, 30, 30)
         self.font = pygame.font.SysFont(None, 48)
@@ -101,10 +101,9 @@ class Scoreboard:
 
     def prep_ships(self):
         """Show how many ships are left."""
-
         self.ships = Group()
         for ship_number in range(self.stats.ships_left):
-            ship = Ship(self.ai_game)
-            ship.rect.x = 10 + ship_number * ship.rect.width
-            ship.rect.y = 10
-            self.ships.add(ship)
+            sb_ship = ScoreboardShip(self.ai_game)
+            sb_ship.rect.x = 10 + ship_number * sb_ship.rect.width
+            sb_ship.rect.y = 10
+            self.ships.add(sb_ship)
